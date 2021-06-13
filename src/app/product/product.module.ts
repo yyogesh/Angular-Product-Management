@@ -2,16 +2,20 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { ProductSearchComponent } from './components/product-search/product-search.component';
+import { CostPipe } from './pipes/cost.pipe';
+import { ListFilterPipe } from './pipes/list-filter.pipe';
+import { DemoMaterialModule } from '../material.module';
+import { ProductInfoComponent } from './components/product-info/product-info.component';
 
 @NgModule({
-  imports: [CommonModule, MatTableModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, DemoMaterialModule],
   declarations: [ProductListComponent,
     ProductDetailComponent,
-    ProductSearchComponent],
+    ProductSearchComponent,
+    CostPipe,
+    ListFilterPipe,
+    ProductInfoComponent],
   exports: [ProductListComponent]
 })
 

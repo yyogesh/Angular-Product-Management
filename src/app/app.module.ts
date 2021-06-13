@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatCardModule } from '@angular/material/card';
 import { EmployeeDetailComponent } from './employee/employee-detail/employee-detail.component';
 import { ProductModule } from './product/product.module';
 
@@ -21,7 +20,6 @@ import { ProductModule } from './product/product.module';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

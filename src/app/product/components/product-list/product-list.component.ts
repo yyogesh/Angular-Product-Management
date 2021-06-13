@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { Product } from '../../models/Product';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit {
-  products = [
+export class ProductListComponent implements OnInit, AfterViewInit {
+  products: Product[] = [
     {
       "productId": 1,
       "productName": "Uncharted 4 : A Thief End ",
@@ -68,15 +73,43 @@ export class ProductListComponent implements OnInit {
       "starRating": 3.2
     }
   ]
+  selectedProduct: Product | undefined;
+
   displayedColumns: string[] = ['imageUrl', 'productName', 'productCode', 'releaseDate', 'description', 'starRating'];
   showImage = false;
-  constructor() { }
+  dataSource = new MatTableDataSource(this.products);
+  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) {
+  }
 
   ngOnInit(): void {
   }
 
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit')
+  }
+
+  openProductDetail(row: Product) {
+    this.selectedProduct = row;
+    const dialogRef = this.dialog.open(ProductDetailComponent, {
+      data: row
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   toggleImage() {
     this.showImage = !this.showImage;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  handleProductInfoVerification(cost: string) {
+    this._snackBar.open(`Const verification done ${cost}`, 'close');
   }
 
 }
