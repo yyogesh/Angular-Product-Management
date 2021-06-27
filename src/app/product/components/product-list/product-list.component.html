@@ -64,5 +64,44 @@
 <br>
 <br>
 <mat-card>
-  <app-product-info [product]="selectedProduct" (onVerify)="handleProductInfoVerification($event)"></app-product-info>
+  <app-product-info [product]="selectedProduct" (onVerify)="handleProductInfoVerification($event)"
+    [resusableCard]="resuableCard">
+    <p>
+      <mat-card>Yesterday product of displayedColumns
+        <div>
+          Product 2
+        </div>
+      </mat-card>
+    </p>
+    <div>
+      <mat-card>Today product of displayedColumns
+        <div>
+          Product 1
+        </div>
+      </mat-card>
+    </div>
+
+  </app-product-info>
 </mat-card>
+
+<ng-container *ngTemplateOutlet="resuableCard"></ng-container>
+<ng-container *ngTemplateOutlet="resuableCard"></ng-container>
+<ng-container *ngTemplateOutlet="resuableCard"></ng-container>
+<ng-container *ngTemplateOutlet="resuableCard"></ng-container>
+
+<ng-template #resuableCard>
+  <div appElementHover>
+    <mat-card>Reusable card
+      <div class="text">
+        Product 2
+      </div>
+    </mat-card>
+  </div>
+
+</ng-template>
+
+<input type="text" appElementHover #firstNameInput />
+
+<input type="text" #lastNameInput />
+
+<button appElementHover (click)="show(firstNameInput.value)">Show</button>

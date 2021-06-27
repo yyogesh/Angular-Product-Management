@@ -1,8 +1,12 @@
+<ng-content select="div"></ng-content>
 <mat-list role="list">
   <mat-list-item role="listitem">{{product?.starRating}}</mat-list-item>
   <mat-list-item role="listitem">{{product?.genre}}</mat-list-item>
   <mat-list-item role="listitem">{{product?.description}}</mat-list-item>
 </mat-list>
 
+<ng-content select="p"></ng-content>
 
 <button mat-stroked-button color="accent" (click)="onVerifyClick()">Verify</button>
+
+<ng-container *ngTemplateOutlet="resusableCard"></ng-container>

@@ -7,6 +7,7 @@ import { CostPipe } from './pipes/cost.pipe';
 import { ListFilterPipe } from './pipes/list-filter.pipe';
 import { DemoMaterialModule } from '../material.module';
 import { ProductInfoComponent } from './components/product-info/product-info.component';
+import { ElementHoverDirective } from './directives/element-hover.directive';
 
 @NgModule({
   imports: [CommonModule, DemoMaterialModule],
@@ -15,7 +16,8 @@ import { ProductInfoComponent } from './components/product-info/product-info.com
     ProductSearchComponent,
     CostPipe,
     ListFilterPipe,
-    ProductInfoComponent],
+    ProductInfoComponent,
+    ElementHoverDirective],
   exports: [ProductListComponent]
 })
 

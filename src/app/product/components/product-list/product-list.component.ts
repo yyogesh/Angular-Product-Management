@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,6 +11,9 @@ import { ProductDetailComponent } from '../product-detail/product-detail.compone
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit, AfterViewInit {
+  // <input type="text" #lastNameInput />
+  @ViewChild('lastNameInput') lastNameInputElement: ElementRef;
+
   products: Product[] = [
     {
       "productId": 1,
@@ -82,10 +85,12 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    console.log('lastNameInputElement ngOnInit ', this.lastNameInputElement)
   }
 
   ngAfterViewInit(): void {
     console.log('ngAfterViewInit')
+    console.log('lastNameInputElement ngAfterViewInit ', this.lastNameInputElement)
   }
 
   openProductDetail(row: Product) {
@@ -112,4 +117,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this._snackBar.open(`Const verification done ${cost}`, 'close');
   }
 
+  show(firstName: string) {
+    console.log(firstName, this.lastNameInputElement.nativeElement.value);
+  }
 }

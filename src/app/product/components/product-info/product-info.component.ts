@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { Product } from '../../models/Product';
 
 @Component({
@@ -9,7 +9,10 @@ import { Product } from '../../models/Product';
 export class ProductInfoComponent implements OnInit, OnChanges {
   @Input() product: Product | undefined; // Parent to child // Product List ===> Product Info
 
+  @Input() resusableCard: TemplateRef<any>;
+
   @Output() onVerify = new EventEmitter();  // Child to parent // Product info ==> Product list
+
 
   constructor() { }
 
