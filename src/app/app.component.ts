@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProductDetailService } from '../../src/app/product/services/product-detail.service'
 
 interface Item {
   name: string;
@@ -67,6 +68,12 @@ export class AppComponent {
 
   trackByEmployee(index: number, employee: any) {
     return employee.code
+  }
+
+  constructor(private productDetailsService: ProductDetailService) {
+    this.productDetailsService.subject.subscribe(res => {
+      console.log(res);
+    })
   }
 
   // getSKillValue(key: string): string {
